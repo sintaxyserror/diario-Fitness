@@ -1,0 +1,55 @@
+<main>
+    <section>
+       
+        @if(userRole === 'invitado'){
+            <article>
+                <app-carrousel></app-carrousel>
+            </article>
+            <article>
+                <div class="row mb-3">
+                    <div class="col-md-6" id="texto-sobre-mi">
+                        <h1 class="mb-4" id="sobre-mi">{{ getText('Sobre mí', 'About me') }}</h1>
+                        <p>{{ getText('¡Hola! Soy Stanley Barbosay, y gracias a la suerte o al destino descubrí el mundo de las artes marciales, que me conquistó desde el primer momento en que lancé mi primera patada. Me encanta aprender nuevas técnicas y superar retos, por eso me he formado en diferentes estilos como el boxeo, jiu-jitsu o la capoeira. Me considero una persona disciplinada, apasionada y con muchas ganas de compartir mis conocimientos. Si quieres saber más sobre mí o entrenar juntos, no dudes en contactar conmigo. ¡Estaré encantado de conocerte!',
+                        'Hi! I\'m Stanley Barbosay, and thanks to luck or destiny I discovered the world of martial arts, which conquered me from the first moment I threw my first kick. I love learning new techniques and overcoming challenges, that\'s why I\'ve trained in different styles like boxing, jiu-jitsu or capoeira. I consider myself a disciplined, passionate person eager to share my knowledge. If you want to know more about me or train together, don\'t hesitate to contact me. I\'ll be happy to meet you!') }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="../../../../images/stanley.png" alt="Foto de Stanley Barbosa" class="foto-perfil">
+                    </div>
+                </div>
+            </article>
+        }
+        @if(userRole === 'usuario' || userRole === 'administrador'){
+            <h1>Lista de Rutinas</h1>
+            <div class="mb-3 row justify-content-center">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Buscar rutina por nombre o descripción" [(ngModel)]="searchRutina">
+                </div>
+            </div>
+            @if(rutinasFiltradas.length > 0){
+                <div class="row">
+                    @for(rutina of rutinasFiltradas; track rutina.id){
+                        <div class="col-md-4 mb-3">
+                            <app-card-rutina [rutina]="rutina" (verDetalles)="onVerDetalles($event)"></app-card-rutina>
+                        </div>
+                    }
+                </div>
+            }
+            <div class="d-flex justify-content-center mt-4 mb-5">
+                <a [routerLink]="['/rutinas']" class="btn btn-success">Registrar nueva rutina</a>
+            </div>
+        }
+        <!-- Modal de detalles de rutina -->
+        @if(rutinaSeleccionada){
+            <app-modal-rutina 
+                [rutina]="rutinaSeleccionada" 
+                [ejercicios]="ejerciciosSeleccionados" 
+                (cerrar)="cerrarDetalles()"
+                (editar)="editarRutina($event)"
+                (eliminar)="eliminarRutina($event)">
+            </app-modal-rutina>
+        }
+    </section>
+</main>
+
+
+

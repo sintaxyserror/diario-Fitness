@@ -1,0 +1,149 @@
+.container-fluid {
+    padding: 0;
+  }
+  
+  main {
+    background-image: url('https://cdn.pixabay.com/photo/2016/07/13/16/00/box-1514845_1280.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  .row {
+    position: relative;
+    z-index: 2;
+  
+  }
+  
+  .login-form {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-label {
+    font-weight: 500;
+  }
+  
+  .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+  }
+  
+  .bi-person-circle {
+    color: #0d6efd;
+  }
+  
+  @media (max-width: 768px) {
+    .col-md-6 {
+      margin-bottom: 10px;
+    }
+  }
+  
+  .user-icon {
+    width: 3em;
+    height: 3em;
+  }
+  
+  .btn {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .card {
+    width: 80%;
+  
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  
+  .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 1rem;
+  }
+  
+  .form-control:focus {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .form-floating label,
+  .form-check-label,
+  .text-white,
+  .card-text {
+    color: white !important;
+  }
+  
+  .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 2;
+  }
+  
+  .password-toggle:hover {
+    color: white;
+  }
+  
+  .invalid-feedback {
+    font-size: 0.875rem;
+  }
+
+  .text-center.mt-3 {
+    position: relative;
+    z-index: 10;
+  }
+  .text-center.mt-3 a, .text-center.mt-3 a:visited {
+    color: #0d6efd !important;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline;
+    position: relative;
+    z-index: 11;
+    cursor: pointer;
+  }
+  .text-center.mt-3 a:hover {
+    color: #ffc107 !important;
+    text-decoration: underline;
+  }
+
+  .text-center.mt-3 p {
+    color: white !important;
+  }

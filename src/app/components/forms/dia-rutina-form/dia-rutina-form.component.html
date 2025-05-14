@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Mensajes de feedback -->
+      @if (mostrarMensaje) {
+        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+          {{ mensajeExito || mensajeError }}
+        </div>
+      }
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Añadir nuevo día de rutina</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="diaAddGroup" (ngSubmit)="agregarDia()">
+            <!-- Día de la semana -->
+            <div class="mb-3">
+              <label for="diaSemana" class="form-label">Día de la semana*</label>
+              <input 
+                type="text" 
+                id="diaSemana" 
+                formControlName="diaSemana" 
+                class="form-control"
+                [ngClass]="{'is-invalid': diaAddGroup.get('diaSemana')?.invalid && diaAddGroup.get('diaSemana')?.touched}"
+                placeholder="Ej: Lunes, Martes..."
+              >
+              @if (diaAddGroup.get('diaSemana')?.invalid && diaAddGroup.get('diaSemana')?.touched) {
+                <div class="invalid-feedback">
+                  @if (diaAddGroup.get('diaSemana')?.errors?.['required']) {
+                    <div>El día es obligatorio</div>
+                  }
+                  @if (diaAddGroup.get('diaSemana')?.errors?.['minlength']) {
+                    <div>Debe tener al menos 3 caracteres</div>
+                  }
+                </div>
+              }
+            </div>
+            <!-- Rutina -->
+            <div class="mb-3">
+              <label for="rutina" class="form-label">Rutina*</label>
+              <select 
+                id="rutina" 
+                formControlName="rutina" 
+                class="form-select"
+                [ngClass]="{'is-invalid': diaAddGroup.get('rutina')?.invalid && diaAddGroup.get('rutina')?.touched}"
+              >
+                <option value="" disabled>Seleccione una rutina</option>
+                @for (r of rutinas; track r.value) {
+                  <option [value]="r.value">{{r.label}}</option>
+                }
+              </select>
+              @if (diaAddGroup.get('rutina')?.invalid && diaAddGroup.get('rutina')?.touched) {
+                <div class="invalid-feedback">
+                  @if (diaAddGroup.get('rutina')?.errors?.['required']) {
+                    <div>La rutina es obligatoria</div>
+                  }
+                  @if (diaAddGroup.get('rutina')?.errors?.['rutinaInvalida']) {
+                    <div>Seleccione una rutina válida</div>
+                  }
+                </div>
+              }
+            </div>
+            <!-- Botones -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button 
+                type="button" 
+                class="btn btn-secondary" 
+                (click)="resetForm()"
+              >
+                Limpiar
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary" 
+                [disabled]="diaAddGroup.invalid"
+              >
+                Guardar Día
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

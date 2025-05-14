@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+footer {
+    display: flex;
+    align-items: center;
+    padding: 0 1%;
+    background-color: #a45252;
+    line-height: 1.5;
+    font-family: "Corissant One", "Merriweather", serif;
+    height: 200px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

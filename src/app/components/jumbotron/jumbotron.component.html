@@ -1,0 +1,31 @@
+<div class="container my-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 position-relative">
+            <img src="../../../../images/jumbotron.jpg" class="rounded img-fluid" 
+                 [alt]="getText('Lucha Olímpica', 'Olympic Wrestling')">
+        </div>
+
+        <div class="col-lg-6">
+            <p class="text-danger fw-bold fst-italic">
+                {{ getText('Luchas Olímpicas', 'Olympic Wrestling') }}
+            </p>
+            <h2 class="fw-bold">
+                {{ getText('EJERCITA LA POTENCIA, RESISTENCIA Y EQUILIBRIO',
+                          'TRAIN POWER, ENDURANCE AND BALANCE') }}
+            </h2>
+            <p class="text-muted">
+                {{ getText('A diferencia de la mayoría de deportes que desarrollan grupos musculares específicos, como el fútbol o atletismo, la lucha olímpica fortalece el cuerpo de manera equilibrada, reduciendo el riesgo de lesiones.',
+                          'Unlike most sports that develop specific muscle groups, like football or athletics, Olympic wrestling strengthens the body in a balanced way, reducing the risk of injuries.') }}
+            </p>
+
+            <!-- Botones -->
+            <div class="d-flex gap-3">
+                <a href="https://es.wikipedia.org/wiki/Lucha_libre_ol%C3%ADmpica" target="_blank"
+                    class="btn btn-dark px-4">{{ getText('SABER MÁS', 'LEARN MORE') }}</a>
+                <a href="#" class="btn btn-outline-danger px-4" routerLink="/activities">
+                    {{ getText('ACTIVIDADES', 'ACTIVITIES') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

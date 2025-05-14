@@ -1,0 +1,141 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Formulario */
+form {
+    width: 100%;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilos para los números (sin los botones de incremento) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Mensajes de ayuda */
+.visually-hidden {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Botones */
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo de imagen */
+.user-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* Layout de columnas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-md-4,
+.col-md-8 {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Estilo para los checkbox */
+.form-check {
+    margin-bottom: 20px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+/* Estilo de enlaces */
+a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de los botones secundarios */
+.btn-secondary {
+    background-color: #ccc;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background-color: #bbb;
+}

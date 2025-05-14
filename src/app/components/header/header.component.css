@@ -1,0 +1,117 @@
+.header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  
+}
+
+.rounded-pill {
+    width: 100px;
+    /* Ajustar tamaño según sea necesario */
+    height: 100px;
+    /* Ajustar tamaño según sea necesario */
+    border-radius: 50%;
+    /* Cambiado a 50% para un logo más redondo */
+    object-fit: cover;
+    /* Mantiene la relación de aspecto del logo */
+}
+
+.navbar {
+    padding: 10px 20px;
+   background-color: #0c0c0c ;
+    /* Espaciado en la parte superior e inferior */
+}
+
+.nav-link {
+    font-weight: 500;
+    /* Aumenta el grosor de la fuente */
+    transition: color 0.3s;
+    /* Añade transición para un efecto suave */
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107;
+}
+
+/* Estilos para el botón de Iniciar Sesión */
+.navbar-nav .login-btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-nav .login-btn:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: black;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+    /* Cambia el color del borde */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='white' viewBox='0 0 30 30'><path stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
+.dropdown-item:hover {
+    background-color: rgb(192, 190, 190);
+}
+@media (max-width: 991px) { /* Se aplica cuando el navbar colapsa */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vw; /* Ocupar el 100% del ancho de la pantalla */
+        background-color: #0c0c0c ;
+        z-index: 1000; /* Para que quede por encima de otros elementos */
+ 
+    }
+    
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        padding: 10px 0;
+    }
+}
+
+.language-selector .btn-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.language-selector .btn-link:hover {
+  color: #ffc107;
+}
+
+.language-selector .dropdown-menu {
+  min-width: 5rem;
+  background-color: #0c0c0c;
+}
+
+.language-selector .dropdown-item {
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.language-selector .dropdown-item:hover {
+  background-color: #ffc107;
+  color: black;
+}

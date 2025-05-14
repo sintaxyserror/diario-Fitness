@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <main>
+        <div class="row justify-content-center min-vh-100 align-items-center">
+            <div class="col-11 col-sm-8 col-md-6 col-lg-4">
+                <div class="card shadow-lg border-0 p-4">
+                    <div class="card-header text-white text-center py-4">
+                        <h2 class="mb-0">{{ getText('Iniciar Sesión', 'Sign In') }}</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation">
+                            <!-- Email Field -->
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" formControlName="email"
+                                    placeholder="{{ getText('Correo electrónico', 'Email') }}"
+                                    [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                                @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                                <div class="invalid-feedback">
+                                    @if (loginForm.get('email')?.errors?.['required']) {
+                                    {{ getText('El correo electrónico es requerido', 'Email is required') }}
+                                    } @else if (loginForm.get('email')?.errors?.['email']) {
+                                    {{ getText('Introduce un correo electrónico válido', 'Please enter a valid email address') }}
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <!-- Password Field -->
+                            <div class="form-group position-relative mb-4">
+                                <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+                                    formControlName="password" placeholder="{{ getText('Contraseña', 'Password') }}"
+                                    [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                                <span class="password-toggle position-absolute end-0 top-50 translate-middle-y me-3"
+                                    (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                                    <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                                </span>
+                                @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                                <div class="invalid-feedback">
+                                    {{ getText('La contraseña es requerida', 'Password is required') }}
+                                </div>
+                                }
+                            </div>
+                            <!-- Error Message -->
+                            @if (errorMessage) {
+                            <div class="alert alert-danger" role="alert">
+                                {{ errorMessage }}
+                            </div>
+                            }
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
+                                {{ getText('Iniciar Sesión', 'Sign In') }}
+                            </button>
+                        </form>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p>{{ getText('¿No tienes cuenta?', 'Don\'t have an account?') }}
+                            <a routerLink="/signUp" routerLinkActive="active">
+                                {{ getText('Regístrate', 'Sign Up') }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>

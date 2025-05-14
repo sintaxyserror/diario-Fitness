@@ -1,0 +1,152 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">Crear Nueva Rutina</h2>
+      </div>
+      <div class="card-body">
+        <!-- Mensajes de éxito y error -->
+        @if (mostrarMensaje) {
+          <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+            {{ mensajeExito || mensajeError }}
+          </div>
+        }
+        
+        <!-- Formulario de creación de rutina -->
+        <form [formGroup]="rutinaAddGroup" (ngSubmit)="onSubmit()" class="needs-validation">
+          <!-- Nombre de la rutina -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre de la Rutina*</label>
+            <input 
+              type="text" 
+              id="nombre" 
+              formControlName="nombre" 
+              class="form-control"
+              [ngClass]="{'is-invalid': getControl('nombre')?.invalid && getControl('nombre')?.touched}"
+              placeholder="Ej: Pecho Básico, Rutina Full Body Avanzada"
+            >
+            <small class="text-muted">Puedes usar nombres descriptivos como "Pecho Básico" o "Pecho Avanzado"</small>
+            @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
+              <div class="invalid-feedback">
+                @if (getControl('nombre')?.errors?.['required']) {
+                  <div>El nombre es obligatorio</div>
+                }
+                @if (getControl('nombre')?.errors?.['minlength']) {
+                  <div>El nombre debe tener al menos 3 caracteres</div>
+                }
+              </div>
+            }
+          </div>
+          
+          <!-- Descripción de la rutina -->
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción*</label>
+            <textarea 
+              id="descripcion" 
+              formControlName="descripcion" 
+              class="form-control" 
+              rows="3"
+              [ngClass]="{'is-invalid': getControl('descripcion')?.invalid && getControl('descripcion')?.touched}"
+              placeholder="Describe brevemente el propósito y beneficios de esta rutina"
+            ></textarea>
+            @if (getControl('descripcion')?.invalid && getControl('descripcion')?.touched) {
+              <div class="invalid-feedback">
+                @if (getControl('descripcion')?.errors?.['required']) {
+                  <div>La descripción es obligatoria</div>
+                }
+                @if (getControl('descripcion')?.errors?.['minlength']) {
+                  <div>La descripción debe tener al menos 1 carácter</div>
+                }
+              </div>
+            }
+          </div>
+          
+          <!-- Selección múltiple de ejercicios -->
+          <div class="mb-3">
+            <label class="form-label">Ejercicios de la rutina*</label>
+            <div class="form-check" *ngIf="ejerciciosDisponibles.length === 0">
+              <span class="text-muted">No hay ejercicios registrados. Agrega ejercicios primero.</span>
+            </div>
+            <div class="row">
+              @for (ejercicio of ejerciciosDisponibles; track ejercicio.id) {
+                <div class="col-md-6 col-lg-4 mb-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                      [value]="'/api/ejercicios/' + ejercicio.id"
+                      (change)="onEjercicioCheckboxChange($event)"
+                      [checked]="getControl('ejercicios')?.value?.includes('/api/ejercicios/' + ejercicio.id)"
+                      id="ejercicio-{{ejercicio.id}}">
+                    <label class="form-check-label" for="ejercicio-{{ejercicio.id}}">
+                      {{ ejercicio.nombre }} ({{ ejercicio.series }}x{{ ejercicio.repeticiones }}, {{ ejercicio.descanso }}s)
+                    </label>
+                  </div>
+                </div>
+              }
+            </div>
+            @if (getControl('ejercicios')?.invalid && getControl('ejercicios')?.touched) {
+              <div class="invalid-feedback d-block">
+                Debe seleccionar al menos un ejercicio.
+              </div>
+            }
+          </div>
+          
+          <!-- El campo usuario es oculto y se asigna automáticamente -->
+          <input type="hidden" formControlName="usuario">
+          
+          <!-- Botones de acción -->
+          <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-save"></i> Guardar Rutina
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">
+              <i class="bi bi-arrow-counterclockwise"></i> Limpiar Formulario
+            </button>
+            <button type="button" class="btn btn-outline-secondary" routerLink="/rutinas/lista">
+              <i class="bi bi-arrow-left"></i> Volver a la Lista
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  <!-- Sección informativa sobre tipos de rutinas -->
+  <div class="card mt-4">
+    <div class="card-header bg-info text-white">
+      <h3 class="mb-0">Consejos para crear rutinas</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Tipos de Rutinas</h5>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Full Body:</strong> Ejercicios para todo el cuerpo en una misma sesión
+            </li>
+            <li class="list-group-item">
+              <strong>Tren Superior:</strong> Enfocado en hombros, pecho, espalda y brazos
+            </li>
+            <li class="list-group-item">
+              <strong>Tren Inferior:</strong> Enfocado en piernas, glúteos y core
+            </li>
+            <li class="list-group-item">
+              <strong>Push/Pull:</strong> Dividir entre ejercicios de empuje y tracción
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h5>Niveles de Intensidad</h5>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Básico:</strong> Para principiantes, menos series/repeticiones
+            </li>
+            <li class="list-group-item">
+              <strong>Intermedio:</strong> Mayor volumen y variedad de ejercicios
+            </li>
+            <li class="list-group-item">
+              <strong>Avanzado:</strong> Alta intensidad, técnicas especializadas
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<main class="container my-5">
+  <h1 class="mb-4 text-center">Calendario semanal de rutinas</h1>
+  @if (loading) {
+    <div>Cargando calendario...</div>
+  }
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+  @if (!loading && !error) {
+    <div class="row justify-content-center">
+      <div class="col-12 mb-3 d-flex justify-content-end">
+        <button class="btn btn-outline-primary" (click)="activarEdicionSemana()">
+          Editar semana
+        </button>
+      </div>
+      <div class="col-12">
+        <div class="table-responsive" style="overflow-x:unset;">
+          <table class="table table-bordered text-center align-middle calendario-semana-table">
+            <thead class="table-light">
+              <tr>
+                @for (dia of calendarioSemana; track dia.dia) {
+                  <th style="min-width: 120px; font-size: 1rem; padding: 0.5rem 0.2rem;">{{ dia.dia }}</th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                @for (dia of calendarioSemana; track dia.dia) {
+                  <td style="font-size: 0.95rem; padding: 0.5rem 0.2rem;">
+                    <div class="celda-dia-interactiva" (click)="abrirModalRutina(dia.rutina)">
+                      @if (dia.rutina) {
+                        <strong>{{ dia.rutina.nombre }}</strong><br>
+                        <span>{{ dia.rutina.descripcion }}</span>
+                      } @else {
+                        <span class="text-muted">Sin rutina</span>
+                      }
+                    </div>
+                  </td>
+                }
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  }
+  <!-- Modal rutina semanal -->
+  @if (rutinaModal) {
+    <app-modal-rutina
+      [rutina]="rutinaModal"
+      [ejercicios]="ejerciciosModal"
+      (cerrar)="cerrarModalRutina()"
+    ></app-modal-rutina>
+  }
+</main>
+<style>
+  @media (min-width: 768px) {
+    .calendario-semana-table th, .calendario-semana-table td {
+      min-width: 120px;
+      font-size: 1rem;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .calendario-semana-table th, .calendario-semana-table td {
+      min-width: 90px;
+      font-size: 0.85rem;
+      padding-left: 0.1rem;
+      padding-right: 0.1rem;
+    }
+  }
+  .celda-dia-interactiva {
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+    border-radius: 6px;
+  }
+  .celda-dia-interactiva:hover {
+    background: #e3f2fd;
+    box-shadow: 0 0 0 2px #1976d233;
+    text-decoration: underline;
+  }
+  .calendario-semana-table td div {
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+  }
+  .calendario-semana-table td div:hover {
+    background: #e3f2fd;
+    box-shadow: 0 0 0 2px #90caf9;
+  }
+</style>

@@ -1,0 +1,23 @@
+@if (registro) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-button" (click)="cerrar.emit()">&times;</button>
+      <h2>Ejercicios realizados el {{ registro.fecha | date:'dd/MM/yyyy' }}</h2>
+      <ul>
+        @if (registroEjercicios.length === 0) {
+          <li>No hay ejercicios registrados para este día.</li>
+        }
+        @for (regE of registroEjercicios; track regE.id) {
+          <li class="mb-3">
+            <div><strong>Ejercicio realizado:</strong> {{ getNombreEjercicio(regE.ejercicio) }}</div>
+            <div><strong>Comentario:</strong> {{ regE.comentario || '-' }}</div>
+            <div><strong>Nivel de dolor:</strong> {{ regE.dolor }}</div>
+          </li>
+        }
+      </ul>
+      <div class="text-center mt-3">
+        <button class="btn btn-secondary" (click)="cerrar.emit()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}

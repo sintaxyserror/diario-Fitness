@@ -1,0 +1,50 @@
+main {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+main.container {
+  max-width: 700px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgb(6, 149, 20);
+}
+
+ul.list-group {
+  margin-top: 2rem;
+}
+
+.list-group-item {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid rgb(6, 149, 20) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list-group-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(6, 149, 20, 0.15);
+  border-color: rgb(6, 149, 20);
+}
+
+.text-center {
+  margin-top: 2rem;
+}
+
+.btn-success {
+  background-color: rgb(6, 149, 20);
+  border-color: rgb(6, 149, 20);
+}
+
+.btn-success:hover {
+  background-color: #fff;
+  color: rgb(6, 149, 20);
+  border-color: rgb(6, 149, 20);
+}

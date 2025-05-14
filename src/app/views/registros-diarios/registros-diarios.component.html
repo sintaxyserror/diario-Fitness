@@ -1,0 +1,44 @@
+<main class="container my-5">
+  <h1>Lista de Registros Diarios</h1>
+  @if (loading) {
+    <div>Cargando registros...</div>
+  }
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+  @if (!loading && registros.length === 0) {
+    <div>No hay registros diarios.</div>
+  }
+  @if (registroModal) {
+    <app-modal-registro-diario
+      [registro]="registroModal"
+      [registroEjercicios]="registroEjerciciosModal"
+      [ejercicios]="ejerciciosModal"
+      (cerrar)="onCerrarModalRegistro()"
+    />
+  }
+  @if (registros.length > 0) {
+    <ul class="list-group">
+      @for (registro of registros; track registro.id) {
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" style="cursor:pointer">
+          <div (click)="onVerEjercicios(registro)">
+            <strong>Fecha:</strong> {{ registro.fecha }}<br>
+            <strong>Sensaciones:</strong> {{ registro.sensaciones }}<br>
+            <strong>Observaciones:</strong> {{ registro.observaciones }}
+          </div>
+          <div class="d-flex flex-column ms-3">
+            <button class="btn btn-primary btn-sm mb-2" (click)="editarRegistro(registro); $event.stopPropagation()">
+              Editar
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarRegistro(registro.id); $event.stopPropagation()">
+              Eliminar
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+  <div class="text-center mt-4">
+    <a [routerLink]="['/registroDiario']" class="btn btn-success">Registrar nuevo día</a>
+  </div>
+</main>

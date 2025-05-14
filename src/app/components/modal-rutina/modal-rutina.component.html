@@ -1,0 +1,25 @@
+@if (rutina) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-button" (click)="cerrar.emit()">&times;</button>
+      <h2>{{ rutina.nombre }}</h2>
+      <p><strong>Descripción:</strong> {{ rutina.descripcion }}</p>
+      <p><strong>Ejercicios:</strong></p>
+      <ul>
+        @for (ejercicio of ejercicios; track ejercicio.id) {
+          <li>
+            <strong>{{ ejercicio.nombre }}</strong><br>
+            Series: {{ ejercicio.series }}<br>
+            Repeticiones: {{ ejercicio.repeticiones }}<br>
+            Descanso: {{ ejercicio.descanso }} segundos
+          </li>
+        }
+      </ul>
+      <div style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center;">
+        <button class="action-button" (click)="onEditar()">Editar</button>
+        <button class="action-button" style="background-color:#dc3545" (click)="onEliminar()">Eliminar</button>
+        <button class="action-button" (click)="cerrar.emit()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,210 @@
+footer {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0c0c0c ;
+}
+
+.white-link{
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.white-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.white-link:hover {
+    color: #4CAF50;
+}
+
+.white-link:hover::after {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    margin: 0; /* Elimina márgenes por defecto */
+    width: 100%;
+}
+
+/* Estilos para títulos */
+h5 {
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #4CAF50;
+}
+
+footer{
+    width: 100%;
+    height: 100%;
+    background-color: #0c0c0c ;
+
+}
+/* Estilos para enlaces */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #4CAF50;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+/* Estilos para iconos sociales */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-icon:hover {
+    color: #4CAF50;
+    transform: translateY(-3px);
+}
+
+/* Estilos para el contenedor del mapa */
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 200px; /* Reducido de calc(100% - 60px) */
+    min-height: 200px; /* Reducido de 250px */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el copyright */
+.copyright-text {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.divider {
+    width: 100%;
+    margin: 0 auto 20px;
+    opacity: 0.2;
+    background-color: #ffffff;
+}
+
+/* Estilos para los iconos de contacto */
+.bi {
+    color: #4CAF50;
+}
+
+/* Ajustes para el contenido */
+.col-lg-4, .col-md-6, .col-md-12 {
+    padding: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h5::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .col-md-6, .col-lg-4 {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-links {
+        align-items: center;
+    }
+
+    .map-container {
+        height: 200px; /* Reducido de 250px */
+        margin-bottom: 20px;
+    }
+
+    .copyright-text {
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .map-container {
+        height: 200px; /* Reducido de 100% */
+        min-height: 200px; /* Reducido de 300px */
+    }
+}

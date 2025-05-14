@@ -1,0 +1,133 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Mensajes de feedback -->
+      @if (mostrarMensaje) {
+        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+          {{ mensajeExito || mensajeError }}
+        </div>
+      }
+
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Añadir nuevo ejercicio</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="EjercicioAddGroup" (ngSubmit)="agregarEjercicio()">
+
+            <!-- Nombre del ejercicio -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre del ejercicio*</label>
+              <input type="text" id="nombre" formControlName="nombre" class="form-control"
+                [ngClass]="{'is-invalid': getControl('nombre')?.invalid && getControl('nombre')?.touched}">
+              @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
+                <div class="invalid-feedback">
+                  @if (getControl('nombre')?.errors?.['required']) {
+                    <div>El nombre es obligatorio</div>
+                  }
+                  @if (getControl('nombre')?.errors?.['minlength']) {
+                    <div>El nombre debe tener al menos 3 caracteres</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Series -->
+            <div class="mb-3">
+              <label for="series" class="form-label">Series*</label>
+              <input type="number" id="series" formControlName="series" class="form-control"
+                [ngClass]="{'is-invalid': getControl('series')?.invalid && getControl('series')?.touched}" min="1">
+              @if (getControl('series')?.invalid && getControl('series')?.touched) {
+                <div class="invalid-feedback">
+                  @if (getControl('series')?.errors?.['required']) {
+                    <div>Las series son obligatorias</div>
+                  }
+                  @if (getControl('series')?.errors?.['min']) {
+                    <div>Mínimo 1 serie</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Repeticiones -->
+            <div class="mb-3">
+              <label for="repeticiones" class="form-label">Repeticiones*</label>
+              <input type="number" id="repeticiones" formControlName="repeticiones" class="form-control"
+                [ngClass]="{'is-invalid': getControl('repeticiones')?.invalid && getControl('repeticiones')?.touched}"
+                min="1">
+              @if (getControl('repeticiones')?.invalid && getControl('repeticiones')?.touched) {
+                <div class="invalid-feedback">
+                  @if (getControl('repeticiones')?.errors?.['required']) {
+                    <div>Las repeticiones son obligatorias</div>
+                  }
+                  @if (getControl('repeticiones')?.errors?.['min']) {
+                    <div>Mínimo 1 repetición</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Descanso -->
+            <div class="mb-3">
+              <label for="descanso" class="form-label">Descanso (segundos)*</label>
+              <input type="number" id="descanso" formControlName="descanso" class="form-control"
+                [ngClass]="{'is-invalid': getControl('descanso')?.invalid && getControl('descanso')?.touched}" min="0">
+              @if (getControl('descanso')?.invalid && getControl('descanso')?.touched) {
+                <div class="invalid-feedback">
+                  @if (getControl('descanso')?.errors?.['required']) {
+                    <div>El descanso es obligatorio</div>
+                  }
+                  @if (getControl('descanso')?.errors?.['min']) {
+                    <div>El valor mínimo es 0</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Rutina -->
+            <div class="mb-3">
+              <label for="rutina" class="form-label">Rutina*</label>
+              <select id="rutina" formControlName="rutina" class="form-select"
+                [ngClass]="{'is-invalid': getControl('rutina')?.invalid && getControl('rutina')?.touched}">
+                <option value="" disabled>Seleccione una rutina</option>
+                @for (r of rutinas; track r.value) {
+                  <option [value]="r.value">{{r.label}}</option>
+                }
+              </select>
+              @if (getControl('rutina')?.invalid && getControl('rutina')?.touched) {
+                <div class="invalid-feedback">
+                  @if (getControl('rutina')?.errors?.['required']) {
+                    <div>La rutina es obligatoria</div>
+                  }
+                  @if (getControl('rutina')?.errors?.['rutinaInvalida']) {
+                    <div>Seleccione una rutina válida</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Rutinas (solo informativo, no editable aquí) -->
+            <div class="mb-3" *ngIf="getControl('rutinas')?.value?.length">
+              <label class="form-label">Este ejercicio está en las siguientes rutinas:</label>
+              <ul>
+                @for (rutina of getControl('rutinas')?.value; track rutina) {
+                  <li>{{ rutina }}</li>
+                }
+              </ul>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" class="btn btn-secondary" (click)="resetForm()">
+                Limpiar
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="EjercicioAddGroup.invalid">
+                Guardar Ejercicio
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

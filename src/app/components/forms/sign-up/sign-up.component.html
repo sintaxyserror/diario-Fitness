@@ -1,0 +1,77 @@
+<div class="container">
+  <form [formGroup]="signUpForm" (ngSubmit)="registrarUsuario()">
+    <div class="row">
+      <div class="col-md-8">
+        <input type="text" formControlName="nombre" placeholder="Nombre">
+        @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
+          <small class="visually-hidden">El nombre es obligatorio.</small>
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <input type="text" formControlName="apellido" placeholder="Apellido">
+        @if (getControl('apellido')?.invalid && getControl('apellido')?.touched) {
+          <small class="visually-hidden">El apellido es obligatorio.</small>
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <input type="email" formControlName="email" placeholder="Email">
+        @if (getControl('email')?.invalid && getControl('email')?.touched) {
+          @if (getControl('email')?.errors?.['required']) {
+            <small class="visually-hidden">El email es obligatorio.</small>
+          }
+          @if (getControl('email')?.errors?.['email']) {
+            <small class="visually-hidden">Introduce un email válido.</small>
+          }
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <input type="password" formControlName="password" placeholder="Contraseña">
+        @if (getControl('password')?.invalid && getControl('password')?.touched) {
+          @if (getControl('password')?.errors?.['required']) {
+            <small class="visually-hidden">La contraseña es obligatoria.</small>
+          }
+          @if (getControl('password')?.errors?.['pattern']) {
+            <small class="visually-hidden">Debe incluir mayúscula, minúscula y número.</small>
+          }
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <input type="password" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
+        @if (signUpForm.hasError('passwordsDoNotMatch')) {
+          <small class="visually-hidden">Las contraseñas no coinciden.</small>
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <select formControlName="rol">
+          <option value="" disabled selected>Selecciona un rol</option>
+          <option value="usuario">Usuario</option>
+          <option value="administrador">Administrador</option>
+        </select>
+        @if (getControl('rol')?.invalid && getControl('rol')?.touched) {
+          <small class="visually-hidden">El rol es obligatorio.</small>
+        }
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <button type="submit" [disabled]="signUpForm.invalid">Registrarse</button>
+      </div>
+    </div>
+  </form>
+</div>

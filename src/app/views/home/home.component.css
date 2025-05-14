@@ -1,0 +1,37 @@
+.foto-perfil {
+    width: 100%; /* La imagen ocupará todo el ancho de su contenedor */
+    max-width: 25vw; /* Pero no más del 25% del ancho de la ventana */
+    height: auto; /* Mantiene la proporción */
+    border-radius: 50%; /* Imagen circular */
+    object-fit: cover;
+    object-position: 50% 30%;
+    margin: 0 auto; /* Centra la imagen solo si está en columna en móviles */
+    display: block;
+}
+
+/* Ajustar la disposición de la fila */
+.row {
+    display: flex;
+    align-items: center; /* Alinea verticalmente la imagen y el texto */
+    justify-content: center; /* Centra en dispositivos pequeños */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+/* Ajustar el texto */
+#texto-sobre-mi {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Espaciar los artículos */
+article {
+    margin-bottom: 60px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgb(6, 149, 20);
+}
