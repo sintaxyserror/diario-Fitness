@@ -83,30 +83,6 @@
                 </div>
               }
             </div>
-
-            <!-- Rutina -->
-            <div class="mb-3">
-              <label for="rutina" class="form-label">Rutina*</label>
-              <select id="rutina" formControlName="rutina" class="form-select"
-                [ngClass]="{'is-invalid': getControl('rutina')?.invalid && getControl('rutina')?.touched}">
-                <option value="" disabled>Seleccione una rutina</option>
-                @for (r of rutinas; track r.value) {
-                  <option [value]="r.value">{{r.label}}</option>
-                }
-              </select>
-              @if (getControl('rutina')?.invalid && getControl('rutina')?.touched) {
-                <div class="invalid-feedback">
-                  @if (getControl('rutina')?.errors?.['required']) {
-                    <div>La rutina es obligatoria</div>
-                  }
-                  @if (getControl('rutina')?.errors?.['rutinaInvalida']) {
-                    <div>Seleccione una rutina válida</div>
-                  }
-                </div>
-              }
-            </div>
-
-            <!-- Rutinas (solo informativo, no editable aquí) -->
             <div class="mb-3" *ngIf="getControl('rutinas')?.value?.length">
               <label class="form-label">Este ejercicio está en las siguientes rutinas:</label>
               <ul>

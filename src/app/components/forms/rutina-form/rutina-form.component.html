@@ -66,21 +66,23 @@
             <div class="form-check" *ngIf="ejerciciosDisponibles.length === 0">
               <span class="text-muted">No hay ejercicios registrados. Agrega ejercicios primero.</span>
             </div>
-            <div class="row">
-              @for (ejercicio of ejerciciosDisponibles; track ejercicio.id) {
-                <div class="col-md-6 col-lg-4 mb-2">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox"
-                      [value]="'/api/ejercicios/' + ejercicio.id"
-                      (change)="onEjercicioCheckboxChange($event)"
-                      [checked]="getControl('ejercicios')?.value?.includes('/api/ejercicios/' + ejercicio.id)"
-                      id="ejercicio-{{ejercicio.id}}">
-                    <label class="form-check-label" for="ejercicio-{{ejercicio.id}}">
-                      {{ ejercicio.nombre }} ({{ ejercicio.series }}x{{ ejercicio.repeticiones }}, {{ ejercicio.descanso }}s)
-                    </label>
+            <div class="ejercicios-scroll">
+              <div class="row">
+                @for (ejercicio of ejerciciosDisponibles; track ejercicio.id) {
+                  <div class="col-md-6 col-lg-4 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox"
+                        [value]="'/api/ejercicios/' + ejercicio.id"
+                        (change)="onEjercicioCheckboxChange($event)"
+                        [checked]="getControl('ejercicios')?.value?.includes('/api/ejercicios/' + ejercicio.id)"
+                        id="ejercicio-{{ejercicio.id}}">
+                      <label class="form-check-label" for="ejercicio-{{ejercicio.id}}">
+                        {{ ejercicio.nombre }} ({{ ejercicio.series }}x{{ ejercicio.repeticiones }}, {{ ejercicio.descanso }}s)
+                      </label>
+                    </div>
                   </div>
-                </div>
-              }
+                }
+              </div>
             </div>
             @if (getControl('ejercicios')?.invalid && getControl('ejercicios')?.touched) {
               <div class="invalid-feedback d-block">
