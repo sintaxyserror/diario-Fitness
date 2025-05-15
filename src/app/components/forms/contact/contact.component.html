@@ -1,0 +1,63 @@
+<main>
+    <section class="container col-md-6" aria-labelledby="contacto-titulo">
+        <h1 id="contacto-titulo" class="text-center mb-4">Contacta conmigo</h1>
+        <form action="#" method="post" aria-describedby="form-descripcion">
+            <p id="form-descripcion" class="visually-hidden">Formulario para contactar con Stanly.</p>
+
+            <section class="row mb-3 mt-5 ">
+                <article class="col-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre"
+                        placeholder="Ingrese su nombre" required aria-required="true" aria-describedby="nombre-ayuda">
+                    <p id="nombre-ayuda" class="visually-hidden">Por favor, ingresa tu nombre completo.</p>
+                </article>
+                <article class="col-6">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" name="apellidos"
+                        placeholder="Ingrese sus apellidos" required aria-required="true" aria-describedby="apellidos-ayuda">
+                    <p id="apellidos-ayuda" class="visually-hidden">Por favor, ingresa tus apellidos completos.</p>
+                </article>
+            </section>
+
+            <section class="row mb-3">
+                <article class="col-5">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="number" class="form-control" id="telefono" name="telefono"
+                        placeholder="Ingrese su teléfono" required aria-required="true" aria-describedby="telefono-ayuda">
+                    <p id="telefono-ayuda" class="visually-hidden">Por favor, ingresa tu número de teléfono.</p>
+                </article>
+                <article class="col-7">
+                    <label for="correo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Escribe tu correo"
+                        required aria-required="true" aria-describedby="correo-ayuda">
+                    <p id="correo-ayuda" class="visually-hidden">Introduce un correo electrónico válido.</p>
+                </article>
+            </section>
+
+            <section class="mb-3">
+                <article>
+                    <label for="comentarios" class="form-label">Deja aquí tus comentarios</label>
+                    <textarea class="form-control" id="comentarios" name="comentarios" rows="3"
+                        placeholder="Ingrese un mensaje" aria-describedby="comentarios-ayuda"></textarea>
+                    <p id="comentarios-ayuda" class="visually-hidden">Escribe tus dudas o comentarios aquí.</p>
+                </article>
+            </section>
+
+            <section class="form-check mb-3">
+                <article>
+                    <input class="form-check-input" type="checkbox" id="terminos" name="terminos" required
+                        aria-required="true">
+                    <label class="form-check-label" for="terminos">
+                        Acepto los términos y condiciones
+                    </label>
+                </article>
+            </section>
+
+            <section class="row mb-3 text-center">
+                <article>
+                    <button type="submit" class="btn btn-primary" aria-label="Enviar formulario de contacto">Confirmar</button>
+                </article>
+            </section>
+        </form>
+    </section>
+</main>

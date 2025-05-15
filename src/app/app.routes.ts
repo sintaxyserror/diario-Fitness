@@ -11,6 +11,10 @@ import { RegistroEjercicioFormComponent } from './components/forms/registro-ejer
 import { HomeComponent } from './views/home/home.component';
 import { EjerciciosComponent } from './views/ejercicios/ejercicios.component';
 import { DiasSemanaComponent } from './views/dias-semana/dias-semana.component';
+import { AvisoLegalComponent} from './components/forms/aviso-legal/aviso-legal.component';
+import { ContactComponent } from './components/forms/contact/contact.component';
+import { PoliticaPrivacidadComponent } from './components/forms/politica-privacidad/politica-privacidad.component';
+import { TerminosyCondicionesComponent } from './components/forms/terminosy-condiciones/terminosy-condiciones.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },	
@@ -28,6 +32,10 @@ export const routes: Routes = [
     { path: 'editarEjercicio/:id', component: EjercicioFormComponent },
     { path: 'ejercicios-lista', component: EjerciciosComponent },
     { path: 'dias-semana', component: DiasSemanaComponent },
+    { path: 'aviso-legal', component: AvisoLegalComponent },
+    { path: 'contacto', component: ContactComponent },
+    { path: 'politica-privacidad', component: PoliticaPrivacidadComponent },
+    { path: 'terminos-y-condiciones', component: TerminosyCondicionesComponent },
     {
         path: 'registros-diarios',
         loadComponent: () => import('./views/registros-diarios/registros-diarios.component').then(m => m.RegistrosDiariosComponent)
