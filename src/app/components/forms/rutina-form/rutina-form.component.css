@@ -1,16 +1,97 @@
+/* Fondo y bordes para coherencia visual */
+.card, .card-header, .card-body {
+  background-color: #181818 !important;
+  color: #fff !important;
+  border-radius: 12px;
+  border: none;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #0c0c0c 60%, #4CAF50 100%) !important;
+  color: #fff !important;
+  border-bottom: 2px solid #4CAF50;
+}
+
+.form-label, .form-check-label, .list-group-item, .text-muted {
+  color: #e0e0e0 !important;
+}
+
+.form-control, textarea, select {
+  background-color: #232323 !important;
+  color: #fff !important;
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+}
+
+.form-control:focus, textarea:focus, select:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 2px #ffc10733;
+  background-color: #232323;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #388e3c;
+}
+
+.btn-secondary, .btn-outline-secondary {
+  border-radius: 20px;
+  background-color: #6c757d !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.btn-secondary:hover, .btn-outline-secondary:hover {
+  background-color: #495057 !important;
+  color: #fff !important;
+}
+
+.invalid-feedback, .alert-danger {
+  color: #ffc107 !important;
+}
+
+.alert-success {
+  color: #4CAF50 !important;
+}
+
 /* Hace la lista de ejercicios desplazable si es muy larga */
 .ejercicios-scroll {
   max-height: 350px;
   overflow-y: auto;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  background: #fafbfc;
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #232323;
+}
+
+.card-body .list-group-item {
+  color: #4CAF50 !important;
+  background: #fff !important;
+  border: none;
+  font-weight: 500;
+}
+
+.card-body .list-group-item strong {
+  color: #111 !important;
 }
 
 @media (max-width: 600px) {
   .ejercicios-scroll {
     max-height: 200px;
     padding: 0.25rem;
+  }
+  .card, .card-header, .card-body {
+    border-radius: 0;
   }
 }
