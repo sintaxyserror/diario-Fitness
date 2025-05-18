@@ -27,12 +27,12 @@ export class RegistroEjercicioFormComponent {
   registroEjercicioForm: FormGroup = this.fb.group({
     comentario: [''],
     dolor: [0, Validators.required],
-    registro: ['', Validators.required], // ID del registro diario
-    ejercicio: ['', Validators.required] // ID del ejercicio
+    registro: ['', Validators.required], 
+    ejercicio: ['', Validators.required] 
   });
 
   ngOnInit() {
-    // Cargar ejercicios disponibles
+    
     this.apiService.getEjercicios().subscribe({
       next: (response: any) => {
         if (response && Array.isArray(response['hydra:member'])) {
