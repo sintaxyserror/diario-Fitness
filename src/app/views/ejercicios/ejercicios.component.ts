@@ -49,8 +49,7 @@ export class EjerciciosComponent {
   }
 
   editarEjercicio(ejercicio: Ejercicio) {
-    this.ejercicioEditando = { ...ejercicio };
-    alert('Funcionalidad de edición pendiente de implementar.');
+    this.router.navigate(['/ejercicios/editar', ejercicio.id]);
   }
 
   eliminarEjercicio(ejercicio: Ejercicio) {

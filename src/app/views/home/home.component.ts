@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api-service.service';
 import { Rutina, Ejercicio } from '../../models/user.interfaces';
 import { CardRutinaComponent } from "../../components/card-rutina/card-rutina.component";
 import { ModalRutinaComponent } from "../../components/modal-rutina/modal-rutina.component";
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -26,7 +26,7 @@ export class HomeComponent {
   ejerciciosSeleccionados: Ejercicio[] = [];
   searchRutina: string = '';
 
-  constructor(private languageService: LanguageService, private apiService: ApiService) {
+  constructor(private languageService: LanguageService, private apiService: ApiService, private router: Router) {
     this.languageService.isSpanish$.subscribe(
       isSpanish => this.isSpanish = isSpanish
     );
@@ -116,7 +116,7 @@ export class HomeComponent {
   }
 
   editarRutina(rutina: Rutina) {
-    alert('Funcionalidad de edición no implementada. Rutina: ' + rutina.nombre);
+    this.router.navigate(['/rutinas/editar', rutina.id]);
   }
 
   eliminarRutina(rutina: Rutina) {

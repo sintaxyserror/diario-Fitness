@@ -47,6 +47,18 @@ export const routes: Routes = [
         loadComponent: () => import('./components/forms/ejercicio-form/ejercicio-form.component').then(m => m.EjercicioFormComponent)
     },
     {
+        path: 'rutinas/editar/:id',
+        loadComponent: () => import('./components/forms/rutina-form/rutina-form.component').then(m => m.RutinaFormComponent)
+    },
+    {
+        path: 'registroDiario/editar/:id',
+        loadComponent: () => import('./components/forms/registro-diario-form/registro-diario-form.component').then(m => m.RegistroDiarioFormComponent)
+    },
+    {
+        path: 'ejercicios/editar/:id',
+        loadComponent: () => import('./components/forms/ejercicio-form/ejercicio-form.component').then(m => m.EjercicioFormComponent)
+    },
+    {
         path: 'ejercicios-lista',
         loadComponent: () => import('./views/ejercicios/ejercicios.component').then(m => m.EjerciciosComponent)
     },
@@ -77,5 +89,9 @@ export const routes: Routes = [
     {
         path: 'administrarUsuarios',
         loadComponent: () => import('./views/usuarios/usuarios.component').then(m => m.UsuariosComponent)
+    },
+    {
+        path: 'usuarios/editar/:id',
+        loadComponent: () => import('./components/forms/sign-up/sign-up.component').then(m => m.SignUpComponent)
     },
 ];

@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
@@ -19,14 +19,19 @@ import { catchError, map } from 'rxjs/operators';
   styleUrls: ['./sign-up.component.css'],
   templateUrl: './sign-up.component.html'
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private apiService = inject(ApiService);
+  private route = inject(ActivatedRoute);
   roles = [
     { value: 'usuario', label: 'Usuario' },
     { value: 'administrador', label: 'Administrador' }
   ];
+
+  mensajeExito: string = '';
+  mensajeError: string = '';
+  idUsuarioEditando: string | null = null;
 
   signUpForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(2)]],
@@ -55,25 +60,63 @@ export class SignUpComponent {
     return password === confirmPassword ? null : { passwordsDoNotMatch: true };
   }
 
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.idUsuarioEditando = id;
+    if (id) {
+      this.apiService.getUsuarioById(+id).subscribe({
+        next: (usuario) => {
+          this.signUpForm.patchValue({
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            email: usuario.email,
+            rol: usuario.rol
+          });
+          // No se rellena password ni confirmPassword por seguridad
+        },
+        error: () => {
+          alert('No se pudo cargar el usuario para editar.');
+        }
+      });
+    }
+  }
+
   registrarUsuario(): void {
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
       return;
     }
 
+    const id = this.route.snapshot.paramMap.get('id');
     const usuario = { ...this.signUpForm.value };
     delete usuario.confirmPassword;
 
-    console.log('Registrando usuario:', usuario);
+    if (id) {
+      // Modo edición
+      this.apiService.actualizarUsuario(+id, usuario).subscribe({
+        next: (response) => {
+          this.mensajeExito = 'Usuario actualizado correctamente';
+          this.mensajeError = '';
+          setTimeout(() => this.router.navigate(['/administrarUsuarios']), 1200);
+        },
+        error: (error) => {
+          this.mensajeError = `Error al actualizar usuario: ${error.error?.message || 'Verifica los datos e intenta de nuevo'}`;
+          this.mensajeExito = '';
+        },
+      });
+      return;
+    }
 
+    // Modo creación
     this.apiService.registerUsuario(usuario).subscribe({
       next: (response) => {
-        console.log('Usuario registrado:', response);
-        this.router.navigate(['/signIn']); // Cambiado de '/login' a '/signIn'
+        this.mensajeExito = 'Usuario registrado correctamente';
+        this.mensajeError = '';
+        setTimeout(() => this.router.navigate(['/signIn']), 1200);
       },
       error: (error) => {
-        console.error('Error al registrar usuario:', error);
-        alert(`Error en el registro: ${error.error?.message || 'Verifica los datos e intenta de nuevo'}`);
+        this.mensajeError = `Error en el registro: ${error.error?.message || 'Verifica los datos e intenta de nuevo'}`;
+        this.mensajeExito = '';
       },
     });
   }

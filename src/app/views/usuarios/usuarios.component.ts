@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api-service.service';
 import { Usuarios } from '../../models/user.interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,7 +18,7 @@ export class UsuariosComponent {
   error = '';
   searchTerm: string = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     this.apiService.getUsuarios().subscribe({
@@ -61,5 +62,9 @@ export class UsuariosComponent {
         this.error = 'Error al eliminar el usuario: ' + (err?.message || '');
       }
     });
+  }
+
+  editarUsuario(usuario: Usuarios) {
+    this.router.navigate(['/usuarios/editar', usuario.id]);
   }
 }

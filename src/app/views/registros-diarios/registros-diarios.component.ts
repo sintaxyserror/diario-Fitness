@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ApiService } from '../../services/api-service.service';
 import { Registro, Ejercicio, RegistroEjercicio } from '../../models/user.interfaces';
 import { ModalRegistroDiarioComponent } from '../../components/modal-registro-diario/modal-registro-diario.component';
@@ -21,7 +21,7 @@ export class RegistrosDiariosComponent {
   registroEjerciciosModal: RegistroEjercicio[] = [];
   registroEditando: Registro | null = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     const userId = localStorage.getItem('userId');
@@ -112,10 +112,6 @@ export class RegistrosDiariosComponent {
   }
 
   editarRegistro(registro: Registro) {
-    this.registroEditando = { ...registro };
-    // Aquí podrías abrir un modal o navegar a un formulario de edición
-    // Por ejemplo: this.router.navigate(['/editarRegistro', registro.id]);
-    // O mostrar un formulario inline/modal
-    alert('Funcionalidad de edición pendiente de implementar.');
+    this.router.navigate(['/registroDiario/editar', registro.id]);
   }
 }

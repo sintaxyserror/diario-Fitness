@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ApiService } from '../../../services/api-service.service';
 import { CommonModule } from '@angular/common';
@@ -20,6 +20,7 @@ import { catchError, map, finalize } from 'rxjs/operators';
 export class RutinaFormComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private apiService = inject(ApiService);
 
 
@@ -91,6 +92,39 @@ export class RutinaFormComponent {
   }
 
   public onSubmit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      // Modo edición
+      if (this.rutinaAddGroup.invalid) {
+        this.rutinaAddGroup.markAllAsTouched();
+        this.mensajeError = 'Por favor, complete todos los campos requeridos';
+        this.mostrarMensaje = true;
+        return;
+      }
+      const datos = this.rutinaAddGroup.value;
+      this.apiService.actualizarRutina(+id, datos).subscribe({
+        next: () => {
+          this.mensajeExito = '¡Rutina actualizada correctamente!';
+          this.mostrarMensaje = true;
+          setTimeout(() => {
+            this.mostrarMensaje = false;
+            this.mensajeExito = '';
+            this.mensajeError = '';
+            this.router.navigate(['/rutinas/lista']);
+            this.resetForm();
+          }, 1200);
+        },
+        error: (err) => {
+          console.error('Error al actualizar rutina:', err);
+          this.mensajeError = 'Error al actualizar rutina: ' + 
+            (err.message || 'Inténtelo de nuevo');
+          this.mostrarMensaje = true;
+        }
+      });
+      return;
+    }
+  
+    // Modo creación (nuevo registro)
     if (this.rutinaAddGroup.invalid) {
       this.rutinaAddGroup.markAllAsTouched();
       this.mensajeError = 'Por favor, complete todos los campos requeridos';
@@ -103,19 +137,18 @@ export class RutinaFormComponent {
     
     this.apiService.agregarRutina(rutinaData).subscribe({
       next: (rutina) => {
-        console.log('Rutina creada exitosamente:', rutina);
         this.mensajeExito = 'Rutina creada correctamente';
         this.mostrarMensaje = true;
-        
-        // Guardar el ID para referencia (útil para añadir ejercicios después)
         this.nuevoRegistro = rutina.id?.toString() || '';
-        
         setTimeout(() => {
+          this.mostrarMensaje = false;
+          this.mensajeExito = '';
+          this.mensajeError = '';
           this.router.navigate(['/diaRutina']);
+          this.resetForm();
         }, 2000);
       },
       error: (err) => {
-        console.error('Error al crear rutina:', err);
         this.mensajeError = 'Error al crear rutina: ' + 
           (err.message || 'Inténtelo de nuevo');
         this.mostrarMensaje = true;
@@ -123,6 +156,24 @@ export class RutinaFormComponent {
     });
   }
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.apiService.getRutinaById(+id).subscribe({
+        next: (rutina) => {
+          this.rutinaAddGroup.patchValue({
+            nombre: rutina.nombre,
+            descripcion: rutina.descripcion,
+            usuario: rutina.usuario,
+            ejercicios: rutina.ejercicios,
+            diaRutinas: rutina.diaRutinas
+          });
+        },
+        error: () => {
+          this.mensajeError = 'No se pudo cargar la rutina para editar.';
+          this.mostrarMensaje = true;
+        }
+      });
+    }
     // Primero verificamos si las rutinas básicas existen
     this.verificarYCrearRutinas();
     // Obtener usuario actual

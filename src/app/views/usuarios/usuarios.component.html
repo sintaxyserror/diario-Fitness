@@ -20,9 +20,14 @@
             <span>Email:</span> {{ usuario.email }}<br>
             <span>Rol:</span> {{ usuario.rol }}
           </div>
-          <button class="btn btn-danger btn-sm ms-3" (click)="eliminarUsuario(usuario.id)">
-            Eliminar
-          </button>
+          <div>
+            <button class="btn btn-primary btn-sm ms-3" (click)="editarUsuario(usuario)">
+              Editar
+            </button>
+            <button class="btn btn-danger btn-sm ms-3" (click)="eliminarUsuario(usuario.id)">
+              Eliminar
+            </button>
+          </div>
         </li>
       }
     </ul>

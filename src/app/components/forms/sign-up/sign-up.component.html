@@ -70,8 +70,16 @@
     
     <div class="row">
       <div class="col-md-8">
-        <button type="submit" [disabled]="signUpForm.invalid">Registrarse</button>
+        <button type="submit" [disabled]="signUpForm.invalid">
+          {{ idUsuarioEditando ? 'Actualizar usuario' : 'Registrarse' }}
+        </button>
       </div>
     </div>
+    @if (mensajeExito) {
+      <div class="alert alert-success mt-3">{{ mensajeExito }}</div>
+    }
+    @if (mensajeError) {
+      <div class="alert alert-danger mt-3">{{ mensajeError }}</div>
+    }
   </form>
 </div>

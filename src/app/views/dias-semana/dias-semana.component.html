@@ -52,6 +52,46 @@
       (cerrar)="cerrarModalRutina()"
     ></app-modal-rutina>
   }
+  <!-- Modal editar semana -->
+  @if (showEditWeekModal) {
+    <div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.3);">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar rutinas de la semana</h5>
+            <button type="button" class="btn-close" (click)="onCloseEditWeekModal()"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row g-3">
+                @for (dia of diasSemana; track $index; let i = $index) {
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">{{ dia }}</label>
+                    <select class="form-select" [ngModel]="editWeekRoutines[i]" (ngModelChange)="onChangeRoutineForDay(i, $event)" [ngModelOptions]="{standalone: true}">
+                      <option [ngValue]="null">Sin rutina</option>
+                      @for (rutina of listaRutinas; track rutina.id) {
+                        <option [ngValue]="rutina">{{ rutina.nombre }}</option>
+                      }
+                    </select>
+                  </div>
+                }
+              </div>
+              @if (editWeekError) {
+                <div class="alert alert-danger mt-3">{{ editWeekError }}</div>
+              }
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="onCloseEditWeekModal()" [disabled]="editWeekLoading">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="onSaveEditWeek()" [disabled]="editWeekLoading">
+              <span *ngIf="editWeekLoading" class="spinner-border spinner-border-sm me-2"></span>
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </main>
 <style>
   @media (min-width: 768px) {

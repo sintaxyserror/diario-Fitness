@@ -106,7 +106,10 @@ export class ApiService {
 
   public actualizarUsuario(id: number, userData: Partial<Usuarios>): Observable<Usuarios> {
     return this.http.patch<Usuarios>(`${this.apiUser}/${id}`, userData, {
-      headers: this.getJsonLdHeaders()
+      headers: {
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      }
     }).pipe(catchError(this.handleApiError('Error al actualizar el usuario')));
   }
 
@@ -209,14 +212,12 @@ export class ApiService {
   }
 
   public actualizarEjercicio(id: number, ejercicio: Partial<Ejercicio>): Observable<Ejercicio> {
-    const headers = this.getJsonLdHeaders();
-    const ejercicioDataToSend: any = { ...ejercicio };
-    
-    if ('rutinas' in ejercicioDataToSend && !Array.isArray(ejercicioDataToSend.rutinas)) {
-      ejercicioDataToSend.rutinas = [];
-    }
-    return this.http.patch<Ejercicio>(`${this.apiEjercicio}/${id}`, ejercicioDataToSend, { headers })
-      .pipe(catchError(this.handleApiError('Error al actualizar el ejercicio')));
+    return this.http.patch<Ejercicio>(`${this.apiEjercicio}/${id}`, ejercicio, {
+      headers: {
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      }
+    }).pipe(catchError(this.handleApiError('Error al actualizar el ejercicio')));
   }
 
   public eliminarEjercicio(id: number): Observable<any> {
@@ -261,7 +262,10 @@ export class ApiService {
 
   public actualizarRutina(id: number, rutina: Partial<Rutina>): Observable<Rutina> {
     return this.http.patch<Rutina>(`${this.apiRutinas}/${id}`, rutina, {
-      headers: this.getJsonLdHeaders()
+      headers: {
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      }
     }).pipe(catchError(this.handleApiError('Error al actualizar la rutina')));
   }
 
@@ -331,13 +335,12 @@ export class ApiService {
       .pipe(catchError(this.handleApiError('Error al obtener el registro diario')));
   }
 
-  public actualizarRegistro(id: number, data: Partial<Registro>): Observable<Registro> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/merge-patch+json',
-      'Accept': 'application/ld+json'
-    });
-    return this.http.patch<Registro>(`${this.apiRegistro}/${id}`, data, {
-      headers
+  public actualizarRegistro(id: number, registro: Partial<Registro>): Observable<Registro> {
+    return this.http.patch<Registro>(`${this.apiRegistro}/${id}`, registro, {
+      headers: {
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      }
     }).pipe(catchError(this.handleApiError('Error al actualizar el registro diario')));
   }
 
@@ -371,12 +374,12 @@ export class ApiService {
   }
 
   public actualizarRegistroEjercicio(id: number, data: Partial<RegistroEjercicio>): Observable<RegistroEjercicio> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/merge-patch+json',
-      'Accept': 'application/ld+json'
-    });
-    return this.http.patch<RegistroEjercicio>(`${this.apiRegistroEjercicio}/${id}`, data, { headers })
-      .pipe(catchError(this.handleApiError('Error al actualizar el registro de ejercicio')));
+    return this.http.patch<RegistroEjercicio>(`${this.apiRegistroEjercicio}/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/merge-patch+json',
+        'Accept': 'application/ld+json'
+      }
+    }).pipe(catchError(this.handleApiError('Error al actualizar el registro de ejercicio')));
   }
 
   public eliminarRegistroEjercicio(id: number): Observable<any> {
