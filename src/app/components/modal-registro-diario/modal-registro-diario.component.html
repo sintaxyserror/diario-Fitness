@@ -1,7 +1,7 @@
 @if (registro) {
-  <div class="modal-overlay">
+  <div class="modal-overlay" role="dialog" aria-modal="true" aria-label="Ejercicios realizados del día">
     <div class="modal-content">
-      <button class="close-button" (click)="cerrar.emit()">&times;</button>
+      <button class="close-button" (click)="cerrar.emit()" aria-label="Cerrar ventana">&times;</button>
       <h2>Ejercicios realizados el {{ registro.fecha | date:'dd/MM/yyyy' }}</h2>
       <ul>
         @if (registroEjercicios.length === 0) {
@@ -16,7 +16,7 @@
         }
       </ul>
       <div class="text-center mt-3">
-        <button class="btn btn-secondary" (click)="cerrar.emit()">Cerrar</button>
+        <button class="btn btn-secondary" (click)="cerrar.emit()" aria-label="Cerrar ventana">Cerrar</button>
       </div>
     </div>
   </div>

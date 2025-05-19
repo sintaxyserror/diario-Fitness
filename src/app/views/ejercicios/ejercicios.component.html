@@ -6,10 +6,10 @@
     </div>
   </div>
   @if (loading) {
-    <div>Cargando ejercicios...</div>
+    <div role="alert">Cargando ejercicios...</div>
   }
   @if (error) {
-    <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
   }
   @if (!loading && ejerciciosFiltrados.length === 0) {
     <div>No hay ejercicios registrados.</div>

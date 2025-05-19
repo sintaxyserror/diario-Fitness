@@ -3,7 +3,7 @@
     <div class="col-md-8">
       <!-- Mensajes de feedback -->
       @if (mostrarMensaje) {
-        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}" role="alert">
           {{ mensajeExito || mensajeError }}
         </div>
       }
@@ -21,7 +21,7 @@
               <input type="text" id="nombre" formControlName="nombre" class="form-control"
                 [ngClass]="{'is-invalid': getControl('nombre')?.invalid && getControl('nombre')?.touched}">
               @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (getControl('nombre')?.errors?.['required']) {
                     <div>El nombre es obligatorio</div>
                   }
@@ -38,7 +38,7 @@
               <input type="number" id="series" formControlName="series" class="form-control"
                 [ngClass]="{'is-invalid': getControl('series')?.invalid && getControl('series')?.touched}" min="1">
               @if (getControl('series')?.invalid && getControl('series')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (getControl('series')?.errors?.['required']) {
                     <div>Las series son obligatorias</div>
                   }
@@ -56,7 +56,7 @@
                 [ngClass]="{'is-invalid': getControl('repeticiones')?.invalid && getControl('repeticiones')?.touched}"
                 min="1">
               @if (getControl('repeticiones')?.invalid && getControl('repeticiones')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (getControl('repeticiones')?.errors?.['required']) {
                     <div>Las repeticiones son obligatorias</div>
                   }
@@ -73,7 +73,7 @@
               <input type="number" id="descanso" formControlName="descanso" class="form-control"
                 [ngClass]="{'is-invalid': getControl('descanso')?.invalid && getControl('descanso')?.touched}" min="0">
               @if (getControl('descanso')?.invalid && getControl('descanso')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (getControl('descanso')?.errors?.['required']) {
                     <div>El descanso es obligatorio</div>
                   }

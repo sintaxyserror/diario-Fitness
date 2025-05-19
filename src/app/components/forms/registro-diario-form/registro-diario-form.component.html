@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       @if (mostrarMensaje) {
-        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}" role="alert">
           {{ mensajeExito || mensajeError }}
         </div>
       }
@@ -18,7 +18,7 @@
               <input type="date" id="fecha" formControlName="fecha" class="form-control"
                 [ngClass]="{'is-invalid': registroForm.get('fecha')?.invalid && registroForm.get('fecha')?.touched}">
               @if (registroForm.get('fecha')?.invalid && registroForm.get('fecha')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (registroForm.get('fecha')?.errors?.['required']) {
                     <div>La fecha es obligatoria</div>
                   }
@@ -31,7 +31,7 @@
               <input type="number" id="sensaciones" formControlName="sensaciones" class="form-control" min="1" max="10"
                 [ngClass]="{'is-invalid': registroForm.get('sensaciones')?.invalid && registroForm.get('sensaciones')?.touched}">
               @if (registroForm.get('sensaciones')?.invalid && registroForm.get('sensaciones')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (registroForm.get('sensaciones')?.errors?.['required']) {
                     <div>Este campo es obligatorio</div>
                   }

@@ -1,10 +1,10 @@
 <main class="container my-5">
   <h1>Lista de Registros Diarios</h1>
   @if (loading) {
-    <div>Cargando registros...</div>
+    <div role="alert">Cargando registros...</div>
   }
   @if (error) {
-    <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
   }
   @if (!loading && registros.length === 0) {
     <div>No hay registros diarios.</div>

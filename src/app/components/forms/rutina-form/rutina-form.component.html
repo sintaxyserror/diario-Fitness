@@ -6,7 +6,7 @@
       <div class="card-body">
         <!-- Mensajes de éxito y error -->
         @if (mostrarMensaje) {
-          <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+          <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}" role="alert">
             {{ mensajeExito || mensajeError }}
           </div>
         }
@@ -26,7 +26,7 @@
             >
             <small class="text-muted">Puedes usar nombres descriptivos como "Pecho Básico" o "Pecho Avanzado"</small>
             @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
-              <div class="invalid-feedback">
+              <div class="invalid-feedback" role="alert">
                 @if (getControl('nombre')?.errors?.['required']) {
                   <div>El nombre es obligatorio</div>
                 }
@@ -49,7 +49,7 @@
               placeholder="Describe brevemente el propósito y beneficios de esta rutina"
             ></textarea>
             @if (getControl('descripcion')?.invalid && getControl('descripcion')?.touched) {
-              <div class="invalid-feedback">
+              <div class="invalid-feedback" role="alert">
                 @if (getControl('descripcion')?.errors?.['required']) {
                   <div>La descripción es obligatoria</div>
                 }
@@ -85,7 +85,7 @@
               </div>
             </div>
             @if (getControl('ejercicios')?.invalid && getControl('ejercicios')?.touched) {
-              <div class="invalid-feedback d-block">
+              <div class="invalid-feedback d-block" role="alert">
                 Debe seleccionar al menos un ejercicio.
               </div>
             }

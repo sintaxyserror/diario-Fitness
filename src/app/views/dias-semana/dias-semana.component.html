@@ -1,10 +1,10 @@
 <main class="container my-5">
   <h1 class="mb-4 text-center">Calendario semanal de rutinas</h1>
   @if (loading) {
-    <div>Cargando calendario...</div>
+    <div role="alert">Cargando calendario...</div>
   }
   @if (error) {
-    <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
   }
   @if (!loading && !error) {
     <div class="row justify-content-center">
@@ -19,7 +19,7 @@
             <thead class="table-light">
               <tr>
                 @for (dia of calendarioSemana; track dia.dia) {
-                  <th style="min-width: 120px; font-size: 1rem; padding: 0.5rem 0.2rem;">{{ dia.dia }}</th>
+                  <th scope="col" style="min-width: 120px; font-size: 1rem; padding: 0.5rem 0.2rem;">{{ dia.dia }}</th>
                 }
               </tr>
             </thead>

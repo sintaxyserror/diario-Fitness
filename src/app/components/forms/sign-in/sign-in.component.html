@@ -12,9 +12,10 @@
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="email" formControlName="email"
                                     placeholder="{{ getText('Correo electrónico', 'Email') }}"
+                                    aria-label="Correo electrónico"
                                     [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                                 @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     @if (loginForm.get('email')?.errors?.['required']) {
                                     {{ getText('El correo electrónico es requerido', 'Email is required') }}
                                     } @else if (loginForm.get('email')?.errors?.['email']) {
@@ -27,13 +28,14 @@
                             <div class="form-group position-relative mb-4">
                                 <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
                                     formControlName="password" placeholder="{{ getText('Contraseña', 'Password') }}"
+                                    aria-label="Contraseña"
                                     [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                                 <span class="password-toggle position-absolute end-0 top-50 translate-middle-y me-3"
                                     (click)="togglePasswordVisibility()" style="cursor: pointer;">
                                     <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
                                 </span>
                                 @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     {{ getText('La contraseña es requerida', 'Password is required') }}
                                 </div>
                                 }

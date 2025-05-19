@@ -6,10 +6,10 @@
     </div>
   </div>
   @if (loading) {
-    <div>Cargando usuarios...</div>
+    <div role="alert">Cargando usuarios...</div>
   }
   @if (error) {
-    <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
   }
   @if (!loading && usuariosFiltrados.length > 0) {
     <ul class="list-group">

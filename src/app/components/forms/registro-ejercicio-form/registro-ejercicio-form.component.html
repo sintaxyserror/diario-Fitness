@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       @if (mostrarMensaje) {
-        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}">
+        <div class="alert" [ngClass]="{'alert-success': mensajeExito, 'alert-danger': mensajeError}" role="alert">
           {{ mensajeExito || mensajeError }}
         </div>
       }
@@ -23,7 +23,7 @@
               <input type="number" id="dolor" formControlName="dolor" class="form-control" min="0" max="10"
                 [ngClass]="{'is-invalid': registroEjercicioForm.get('dolor')?.invalid && registroEjercicioForm.get('dolor')?.touched}">
               @if (registroEjercicioForm.get('dolor')?.invalid && registroEjercicioForm.get('dolor')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (registroEjercicioForm.get('dolor')?.errors?.['required']) {
                     <div>El nivel de dolor es obligatorio</div>
                   }
@@ -41,7 +41,7 @@
                 }
               </select>
               @if (registroEjercicioForm.get('ejercicio')?.invalid && registroEjercicioForm.get('ejercicio')?.touched) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                   @if (registroEjercicioForm.get('ejercicio')?.errors?.['required']) {
                     <div>El ejercicio es obligatorio</div>
                   }

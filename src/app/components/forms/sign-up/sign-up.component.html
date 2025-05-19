@@ -2,31 +2,34 @@
   <form [formGroup]="signUpForm" (ngSubmit)="registrarUsuario()">
     <div class="row">
       <div class="col-md-8">
-        <input type="text" formControlName="nombre" placeholder="Nombre">
+        <label for="nombre" class="visually-hidden">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" placeholder="Nombre">
         @if (getControl('nombre')?.invalid && getControl('nombre')?.touched) {
-          <small class="visually-hidden">El nombre es obligatorio.</small>
+          <small class="visually-hidden" role="alert">El nombre es obligatorio.</small>
         }
       </div>
     </div>
     
     <div class="row">
       <div class="col-md-8">
-        <input type="text" formControlName="apellido" placeholder="Apellido">
+        <label for="apellido" class="visually-hidden">Apellido</label>
+        <input id="apellido" type="text" formControlName="apellido" placeholder="Apellido">
         @if (getControl('apellido')?.invalid && getControl('apellido')?.touched) {
-          <small class="visually-hidden">El apellido es obligatorio.</small>
+          <small class="visually-hidden" role="alert">El apellido es obligatorio.</small>
         }
       </div>
     </div>
     
     <div class="row">
       <div class="col-md-8">
-        <input type="email" formControlName="email" placeholder="Email">
+        <label for="email" class="visually-hidden">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Email">
         @if (getControl('email')?.invalid && getControl('email')?.touched) {
           @if (getControl('email')?.errors?.['required']) {
-            <small class="visually-hidden">El email es obligatorio.</small>
+            <small class="visually-hidden" role="alert">El email es obligatorio.</small>
           }
           @if (getControl('email')?.errors?.['email']) {
-            <small class="visually-hidden">Introduce un email válido.</small>
+            <small class="visually-hidden" role="alert">Introduce un email válido.</small>
           }
         }
       </div>
@@ -34,13 +37,14 @@
     
     <div class="row">
       <div class="col-md-8">
-        <input type="password" formControlName="password" placeholder="Contraseña">
+        <label for="password" class="visually-hidden">Contraseña</label>
+        <input id="password" type="password" formControlName="password" placeholder="Contraseña">
         @if (getControl('password')?.invalid && getControl('password')?.touched) {
           @if (getControl('password')?.errors?.['required']) {
-            <small class="visually-hidden">La contraseña es obligatoria.</small>
+            <small class="visually-hidden" role="alert">La contraseña es obligatoria.</small>
           }
           @if (getControl('password')?.errors?.['pattern']) {
-            <small class="visually-hidden">Debe incluir mayúscula, minúscula y número.</small>
+            <small class="visually-hidden" role="alert">Debe incluir mayúscula, minúscula y número.</small>
           }
         }
       </div>
@@ -48,22 +52,24 @@
     
     <div class="row">
       <div class="col-md-8">
-        <input type="password" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
+        <label for="confirmPassword" class="visually-hidden">Confirmar Contraseña</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirmar Contraseña">
         @if (signUpForm.hasError('passwordsDoNotMatch')) {
-          <small class="visually-hidden">Las contraseñas no coinciden.</small>
+          <small class="visually-hidden" role="alert">Las contraseñas no coinciden.</small>
         }
       </div>
     </div>
     
     <div class="row">
       <div class="col-md-8">
-        <select formControlName="rol">
+        <label for="rol" class="visually-hidden">Rol</label>
+        <select id="rol" formControlName="rol">
           <option value="" disabled selected>Selecciona un rol</option>
           <option value="usuario">Usuario</option>
           <option value="administrador">Administrador</option>
         </select>
         @if (getControl('rol')?.invalid && getControl('rol')?.touched) {
-          <small class="visually-hidden">El rol es obligatorio.</small>
+          <small class="visually-hidden" role="alert">El rol es obligatorio.</small>
         }
       </div>
     </div>
