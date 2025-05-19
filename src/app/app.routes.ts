@@ -94,4 +94,8 @@ export const routes: Routes = [
         path: 'usuarios/editar/:id',
         loadComponent: () => import('./components/forms/sign-up/sign-up.component').then(m => m.SignUpComponent)
     },
+    {
+        path: 'registroEjercicio/editar/:id',
+        loadComponent: () => import('./components/forms/registro-ejercicio-form/registro-ejercicio-form.component').then(m => m.RegistroEjercicioFormComponent)
+    },
 ];

@@ -351,11 +351,16 @@ export class ApiService {
 
   public agregarRegistroEjercicio(registroEjercicioData: RegistroEjercicio): Observable<RegistroEjercicio> {
     const headers = this.getJsonLdHeaders();
+    // Permitir tanto número como IRI
+    const toIri = (val: any, resource: string) => {
+      if (typeof val === 'string' && val.startsWith(`/api/${resource}/`)) return val;
+      return `/api/${resource}/${val}`;
+    };
     const registroEjercicioDataToSend: any = {
       comentario: registroEjercicioData.comentario,
       dolor: registroEjercicioData.dolor,
-      registro: `/api/registros/${registroEjercicioData.registro}`,
-      ejercicio: `/api/ejercicios/${registroEjercicioData.ejercicio}`
+      registro: toIri(registroEjercicioData.registro, 'registros'),
+      ejercicio: toIri(registroEjercicioData.ejercicio, 'ejercicios')
     };
 
     console.log('Enviando datos de registro de ejercicio:', registroEjercicioDataToSend);
